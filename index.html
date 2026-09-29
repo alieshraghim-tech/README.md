@@ -1,93 +1,127 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>پنل خبری ایتا</title>
 
 <style>
-
-*{
-box-sizing:border-box;
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  background: #f3f5f7;
 }
 
-body{
-margin:0;
-font-family:Tahoma,Arial,sans-serif;
-background:#f3f5f7;
-color:#222;
+header {
+  background: #168aad;
+  color: white;
+  padding: 25px;
+  text-align: center;
 }
 
-header{
-background:#168aad;
-color:white;
-padding:24px 18px;
-text-align:center;
-border-radius:0 0 20px 20px;
+main {
+  padding: 20px;
 }
 
-header h1{
-margin:0 0 7px;
-font-size:22px;
+.card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 15px;
 }
 
-header p{
-margin:0;
-font-size:13px;
-opacity:.9;
+button {
+  width: 100%;
+  padding: 14px;
+  border: 0;
+  border-radius: 10px;
+  background: #168aad;
+  color: white;
+  font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>پنل خبری ایتا</h2>
+<p>مدیریت منابع و اخبار</p>
+</header>
+
+<main>
+
+<div class="card">
+<h3>مدیریت منابع خبری</h3>
+
+<button onclick="openSources()">
+ورود به منابع خبری
+</button>
+</div>
+
+<div id="sources" class="card" style="display:none">
+
+<h3>افزودن منبع</h3>
+
+<input id="name"
+placeholder="نام کانال"
+style="width:100%;padding:12px;margin-bottom:10px">
+
+<input id="link"
+placeholder="@channel"
+style="width:100%;padding:12px;margin-bottom:10px">
+
+<button onclick="addSource()">
+افزودن منبع
+</button>
+
+<div id="list"></div>
+
+</div>
+
+</main>
+
+<script>
+
+function openSources() {
+
+document.getElementById("sources").style.display = "block";
+
 }
 
-.container{
-max-width:700px;
-margin:auto;
-padding:16px;
+function addSource() {
+
+var name =
+document.getElementById("name").value;
+
+var link =
+document.getElementById("link").value;
+
+if (!name || !link) {
+
+alert("نام و شناسه کانال را وارد کن");
+
+return;
+
 }
 
-.card{
-background:white;
-padding:18px;
-margin-bottom:15px;
-border-radius:16px;
-box-shadow:0 3px 12px rgba(0,0,0,.06);
+var item =
+document.createElement("p");
+
+item.textContent =
+"📰 " + name + " — " + link;
+
+document
+.getElementById("list")
+.appendChild(item);
+
+document.getElementById("name").value = "";
+
+document.getElementById("link").value = "";
+
 }
 
-h2{
-font-size:17px;
-margin-top:0;
-}
+</script>
 
-input{
-width:100%;
-padding:13px;
-margin-bottom:10px;
-border:1px solid #d1d5db;
-border-radius:10px;
-font-size:14px;
-}
-
-button{
-border:0;
-border-radius:10px;
-padding:13px;
-font-size:14px;
-cursor:pointer;
-}
-
-.primary{
-width:100%;
-background:#168aad;
-color:white;
-}
-
-.secondary{
-background:#e8f3f6;
-color:#12657d;
-}
-
-.danger{
-background:#fee2e2
+</body>
+</html>
