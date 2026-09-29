@@ -2,384 +2,129 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>پنل خبری ایتا</title>
 
 <style>
-* {
-  box-sizing: border-box;
+body{
+margin:0;
+font-family:Tahoma,Arial;
+background:#f3f5f7;
+color:#222;
 }
 
-body {
-  margin: 0;
-  background: #f3f5f7;
-  color: #1f2937;
-  font-family: Tahoma, Arial, sans-serif;
+header{
+background:#168aad;
+color:white;
+padding:25px;
+text-align:center;
 }
 
-.header {
-  background: #168aad;
-  color: white;
-  padding: 22px 18px;
-  border-radius: 0 0 22px 22px;
+.container{
+padding:20px;
 }
 
-.header h1 {
-  margin: 0 0 6px;
-  font-size: 22px;
+.card{
+background:white;
+padding:20px;
+margin-bottom:15px;
+border-radius:15px;
 }
 
-.header p {
-  margin: 0;
-  font-size: 13px;
-  opacity: .9;
-}
-
-.container {
-  max-width: 700px;
-  margin: auto;
-  padding: 16px;
-}
-
-.card {
-  background: white;
-  padding: 18px;
-  margin-bottom: 15px;
-  border-radius: 17px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.06);
-}
-
-.card h2 {
-  margin-top: 0;
-  font-size: 17px;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 12px;
-  margin-bottom: 15px;
-}
-
-.stat {
-  background: white;
-  padding: 15px;
-  border-radius: 15px;
-  box-shadow: 0 3px 10px rgba(0,0,0,.05);
-}
-
-.number {
-  font-size: 25px;
-  font-weight: bold;
-}
-
-.label {
-  color: #6b7280;
-  font-size: 12px;
-  margin-top: 4px;
-}
-
-input {
-  width: 100%;
-  padding: 13px;
-  border: 1px solid #d1d5db;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  font-size: 14px;
-  direction: rtl;
-}
-
-button {
-  border: none;
-  border-radius: 10px;
-  padding: 12px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.primary {
-  background: #168aad;
-  color: white;
-  width: 100%;
-}
-
-.secondary {
-  background: #e8f3f6;
-  color: #12657d;
-}
-
-.danger {
-  background: #fee2e2;
-  color: #b91c1c;
-}
-
-.source {
-  border: 1px solid #e5e7eb;
-  padding: 14px;
-  border-radius: 12px;
-  margin-top: 10px;
-}
-
-.source-name {
-  font-weight: bold;
-  font-size: 15px;
-}
-
-.source-link {
-  color: #168aad;
-  font-size: 12px;
-  margin-top: 5px;
-  direction: ltr;
-  text-align: right;
-}
-
-.source-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.source-actions button {
-  flex: 1;
-}
-
-.active {
-  color: #15803d;
-  font-size: 11px;
-  margin-top: 5px;
-}
-
-.inactive {
-  color: #b91c1c;
-  font-size: 11px;
-  margin-top: 5px;
-}
-
-.empty {
-  text-align: center;
-  color: #9ca3af;
-  padding: 20px 5px;
-  font-size: 13px;
-}
-
-.back {
-  margin-bottom: 15px;
-  background: #e5e7eb;
-  color: #374151;
-}
-
-.hidden {
-  display: none;
-}
-
-.footer {
-  text-align: center;
-  color: #9ca3af;
-  font-size: 11px;
-  padding: 20px;
+button{
+width:100%;
+padding:15px;
+border:0;
+border-radius:10px;
+background:#168aad;
+color:white;
+font-size:16px;
 }
 </style>
+
 </head>
 
 <body>
 
-<header class="header">
-  <h1>پنل خبری ایتا</h1>
-  <p>مدیریت منابع و اخبار</p>
+<header>
+<h2>پنل خبری ایتا</h2>
+<p>مدیریت منابع و اخبار</p>
 </header>
 
-<main class="container">
+<div class="container">
 
-  <!-- داشبورد -->
-  <section id="dashboard">
+<div class="card">
 
-    <div class="stats">
+<h3>منابع خبری</h3>
 
-      <div class="stat">
-        <div class="number" id="sourceCount">۰</div>
-        <div class="label">منابع خبری</div>
-      </div>
+<button onclick="openSources()">
+ورود به منابع خبری
+</button>
 
-      <div class="stat">
-        <div class="number">۰</div>
-        <div class="label">اخبار دریافتی</div>
-      </div>
-
-      <div class="stat">
-        <div class="number">۰</div>
-        <div class="label">در انتظار تأیید</div>
-      </div>
-
-      <div class="stat">
-        <div class="number">۰</div>
-        <div class="label">منتشر شده</div>
-      </div>
-
-    </div>
-
-    <div class="card">
-
-      <h2>مدیریت منابع خبری</h2>
-
-      <button class="primary" onclick="showSources()">
-        ورود به منابع خبری
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- منابع -->
-  <section id="sourcesPage" class="hidden">
-
-    <button class="back" onclick="showDashboard()">
-      ← بازگشت به داشبورد
-    </button>
-
-    <div class="card">
-
-      <h2>افزودن منبع خبری</h2>
-
-      <input
-        id="sourceName"
-        type="text"
-        placeholder="نام کانال"
-      >
-
-      <input
-        id="sourceLink"
-        type="text"
-        placeholder="@channel یا لینک کانال"
-        dir="ltr"
-      >
-
-      <button class="primary" onclick="addSource()">
-        افزودن منبع
-      </button>
-
-    </div>
-
-
-    <div class="card">
-
-      <h2>منابع ثبت‌شده</h2>
-
-      <div id="sourceList"></div>
-
-    </div>
-
-  </section>
-
-</main>
-
-<div class="footer">
-  Eitaa News Panel — نسخه آزمایشی
 </div>
 
+<div id="sources" class="card" style="display:none">
+
+<h3>افزودن منبع خبری</h3>
+
+<input
+id="name"
+placeholder="نام کانال"
+style="width:100%;padding:12px;margin-bottom:10px"
+>
+
+<input
+id="link"
+placeholder="@channel"
+style="width:100%;padding:12px;margin-bottom:10px"
+>
+
+<button onclick="addSource()">
+افزودن
+</button>
+
+<div id="list"></div>
+
+</div>
+
+</div>
 
 <script>
 
-let sources =
-  JSON.parse(localStorage.getItem("eitaa_sources")) || [];
+function openSources(){
 
-
-/* تبدیل عدد انگلیسی به فارسی */
-function faNumber(number) {
-
-  return String(number)
-    .replace(/0/g,"۰")
-    .replace(/1/g,"۱")
-    .replace(/2/g,"۲")
-    .replace(/3/g,"۳")
-    .replace(/4/g,"۴")
-    .replace(/5/g,"۵")
-    .replace(/6/g,"۶")
-    .replace(/7/g,"۷")
-    .replace(/8/g,"۸")
-    .replace(/9/g,"۹");
+document.getElementById("sources").style.display="block";
 
 }
 
+function addSource(){
 
-/* ذخیره */
-function saveSources() {
+let name=document.getElementById("name").value;
 
-  localStorage.setItem(
-    "eitaa_sources",
-    JSON.stringify(sources)
-  );
+let link=document.getElementById("link").value;
 
-}
+if(name==="" || link===""){
 
+alert("نام و شناسه کانال را وارد کن");
 
-/* نمایش داشبورد */
-function showDashboard() {
-
-  document
-    .getElementById("dashboard")
-    .classList.remove("hidden");
-
-  document
-    .getElementById("sourcesPage")
-    .classList.add("hidden");
-
-  updateStats();
+return;
 
 }
 
+let item=document.createElement("p");
 
-/* نمایش منابع */
-function showSources() {
+item.innerHTML="📰 "+name+" — "+link;
 
-  document
-    .getElementById("dashboard")
-    .classList.add("hidden");
+document.getElementById("list").appendChild(item);
 
-  document
-    .getElementById("sourcesPage")
-    .classList.remove("hidden");
+document.getElementById("name").value="";
 
-  renderSources();
+document.getElementById("link").value="";
 
 }
 
+</script>
 
-/* افزودن منبع */
-function addSource() {
-
-  const name =
-    document.getElementById("sourceName").value.trim();
-
-  const link =
-    document.getElementById("sourceLink").value.trim();
-
-
-  if (!name || !link) {
-
-    alert("نام کانال و شناسه یا لینک را وارد کن.");
-
-    return;
-
-  }
-
-
-  const source = {
-
-    id: Date.now(),
-
-    name: name,
-
-    link: link,
-
-    active: true
-
-  };
-
-
-  sources.push(source);
-
-  saveSources();
-
-  document.getElementById("sourceName").value = "";
+</body>
+</html>
